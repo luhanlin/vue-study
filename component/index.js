@@ -1,3 +1,4 @@
+/* jshint esversion: 6 */
 // 定义一个名为 button-counter 的新组件 组件定义需要放在Vue实例之前
 // 组件全局注册
 Vue.component('button-counter', {
