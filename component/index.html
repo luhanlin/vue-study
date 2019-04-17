@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="index.css">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <button-counter></button-counter>
+            <button-counter></button-counter>
+            <button-counter></button-counter>
+            <button-counter></button-counter>
+
+            <br><br>
+            <div :style="{ fontSize: postFontSize + 'em' }">
+                <blog-post
+                    v-for="post in posts"
+                    :key="post.id"
+                    :post="post"
+                    @enlarge-text="changeFontSize"
+                ></blog-post>
+            </div>
+
+            <br><br>
+            <custom-input v-model="searchText"></custom-input>
+            <p>searchText is: {{ searchText }}</p>
+
+            <br>
+            <alert-box>
+                Something bad happened.
+            </alert-box>
+
+            <br><br>
+            <base-input
+                v-model="username"
+                required
+                placeholder="Enter your username ~~~"
+            ></base-input>
+            <p>username is: {{ username }}</p>
+
+        </div>
+
+        <!-- 动态组件 -->
+        <div id="dynamic-component-demo" class="demo">
+            <button
+              v-for="tab in tabs"
+              v-bind:key="tab"
+              v-bind:class="['tab-button', { active: currentTab === tab }]"
+              v-on:click="currentTab = tab"
+            >{{ tab }}</button>
+          
+            <component
+              v-bind:is="currentTabComponent"
+              class="tab"
+            ></component>
+          </div>
+          
+        <script src="index.js"></script>
+    </body>
+</html>
