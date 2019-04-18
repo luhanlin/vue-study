@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="index.css">
+        <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
+    </head>
+    <body>
+        <div id="demo">
+            <button v-on:click="show = !show">
+                Toggle
+            </button>
+            <transition name="fade">
+                <p v-if="show">hello</p>
+            </transition>
+            <transition name="slide-fade">
+                <p v-if="show">hello</p>
+            </transition>
+
+            <transition name="bounce">
+                <p v-if="show">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis enim libero, at lacinia diam fermentum id. Pellentesque habitant morbi tristique senectus et netus.</p>
+            </transition>
+
+            <transition
+                name="custom-classes-transition"
+                enter-active-class="animated tada"
+                leave-active-class="animated bounceOutRight"
+            >
+                <p v-if="show">hello</p>
+            </transition>
+
+            <!-- 显示定义，时间毫秒 -->
+            <transition :duration="{ enter: 500, leave: 800 }">
+                <p v-if="show">hello</p>
+            </transition>
+
+            <!-- 使用钩子函数 -->
+            <transition
+                v-on:before-enter="beforeEnter"
+                v-on:enter="enter"
+                v-on:leave="leave"
+                v-bind:css="false"
+            >
+                <p v-if="show">
+                Demo
+                </p>
+            </transition>
+
+            <!-- 组件动态过度 -->
+            <transition>
+                <button v-bind:key="docState" @click="change">
+                    {{ buttonMessage }}
+                </button>
+            </transition>
+        </div>
+
+        <br>
+        <!-- 列表的进入与离开 -->
+        <div id="list-demo" class="demo">
+            <button v-on:click="add">Add</button>
+            <button v-on:click="remove">Remove</button>
+            <transition-group name="list" tag="p">
+                <span v-for="item in items" v-bind:key="item" class="list-item">
+                {{ item }}
+                </span>
+            </transition-group>
+        </div>
+
+        <script src="index.js"></script>
+    </body>
+</html>

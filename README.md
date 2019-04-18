@@ -72,3 +72,23 @@ const AsyncComponent = () => ({
   timeout: 3000
 })
 ```
+
+### 6. transition and animate
+
+- 钩子函数
+
+```js
+<transition
+  v-on:before-enter="beforeEnter"
+  v-on:enter="enter"
+  v-on:after-enter="afterEnter"
+  v-on:enter-cancelled="enterCancelled"
+
+  v-on:before-leave="beforeLeave"
+  v-on:leave="leave"
+  v-on:after-leave="afterLeave"
+  v-on:leave-cancelled="leaveCancelled"
+>
+  <!-- ... -->
+</transition>
+```
