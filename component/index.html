@@ -23,6 +23,10 @@
             <br><br>
             <custom-input v-model="searchText"></custom-input>
             <p>searchText is: {{ searchText }}</p>
+            <br><br>
+
+            <base-checkbox v-model="lovingVue"></base-checkbox>
+            <p>lovingVue is: {{ lovingVue }}</p>
 
             <br>
             <alert-box>
@@ -47,11 +51,14 @@
               v-bind:class="['tab-button', { active: currentTab === tab }]"
               v-on:click="currentTab = tab"
             >{{ tab }}</button>
-          
-            <component
-              v-bind:is="currentTabComponent"
-              class="tab"
-            ></component>
+
+            <!-- keep-alive 缓存 -->
+            <keep-alive>
+                <component
+                v-bind:is="currentTabComponent"
+                class="tab"
+                ></component>
+            </keep-alive>
           </div>
           
         <script src="index.js"></script>

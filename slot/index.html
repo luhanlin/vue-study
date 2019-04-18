@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="index.css">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <!-- 动态指令参数  error-->
+            <!-- <base-layout>
+                <template v-slot:[dynamicSlotName]>
+                    <h1>Here might be a page title</h1>
+                </template>
+            </base-layout> -->
+            
+            <!-- v-slot 缩写 -->
+            <base-layout>
+                <template #header>
+                    <h1>Here might be a page title</h1>
+                </template>
+            </base-layout>
+            <current-user #default="{ user }">
+                {{ user.firstName }}
+            </current-user>
+
+            <!-- 具体槽 -->
+            <base-layout>
+                <template v-slot:header>
+                <h1>Here might be a page title</h1>
+                </template>
+            
+                <p>A paragraph for the main content.</p>
+                <p>And another one.</p>
+            
+                <template v-slot:footer>
+                <p>Here's some contact info</p>
+                </template>
+            </base-layout>
+
+            <current-user>
+                <template v-slot:default="slotProps">
+                    {{ slotProps.user.firstName }}
+                </template>
+            </current-user>
+            <current-user v-slot = 'slotProps'>
+                {{ slotProps.user.firstName }}
+            </current-user>
+            <!-- es5 语法 -->
+            <current-user v-slot = "{ user }">
+                {{ user.firstName }}
+            </current-user>
+            <!-- 别名 -->
+            <current-user v-slot = "{ user : person }">
+                {{ person.firstName }}
+            </current-user>
+            <!-- 替换prop为undifind的时候  error -->
+            <!-- <current-user v-slot="{ user = { firstName: 'Guest' } }">
+                {{ user.firstName }}
+            </current-user> -->
+        </div>
+        <script src="index.js"></script>
+    </body>
+</html>
